@@ -1,14 +1,58 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:new_app/components/my_buttton.dart';
+import 'package:new_app/components/my_button.dart';
 import 'package:new_app/components/my_textfield.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
-  final usernameController = TextEditingController();
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
-  void signUserIn() {}
+  void signUserIn() async {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return Center(
+            child: CircularProgressIndicator(
+                backgroundColor: Colors.blueGrey[400]),
+          );
+        });
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      if (emailController.text.isEmpty || passwordController.text.isEmpty) {
+        validateLogin("Please fill all the fields");
+      } else if (e.code == 'user-not-found') {
+        validateLogin("Incorrect Email");
+      } else if (e.code == 'wrong-password') {
+        validateLogin("Wrong Password");
+      } else if (e.code == 'invalid-email') {
+        validateLogin("Invalid Email format");
+      }
+    }
+  }
+
+  void validateLogin(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +74,8 @@ class LoginPage extends StatelessWidget {
                   style: TextStyle(color: Colors.grey[700], fontSize: 16)),
               const SizedBox(height: 50),
               MyTextField(
-                controller: usernameController,
-                hintText: 'Username',
+                controller: emailController,
+                hintText: 'Email',
                 obscureText: false,
               ),
               const SizedBox(height: 50),
