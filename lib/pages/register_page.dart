@@ -34,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
-    } on FirebaseAuthException catch (e) {
+    } on FirebaseAuthException {
       Navigator.pop(context);
       if (emailController.text.isEmpty || passwordController.text.isEmpty) {
         validateRegister("Please fill all the fields");

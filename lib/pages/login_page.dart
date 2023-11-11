@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:new_app/components/my_button.dart';
 import 'package:new_app/components/my_textfield.dart';
 import 'package:new_app/pages/forgot_password_page.dart';
-import 'package:new_app/pages/home_page.dart';
-import 'package:new_app/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;

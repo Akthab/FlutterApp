@@ -37,7 +37,7 @@ class __ForgotPasswordPageState extends State<ForgotPasswordPage> {
       } else if (e.code == 'invalid-email') {
         validateReset("Invalid Email format");
       } else {
-        print("THE E CODE IS" + e.code);
+        validateReset(e.code);
       }
     }
   }
