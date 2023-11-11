@@ -7,6 +7,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:new_app/components/my_button.dart';
 import 'package:new_app/components/my_textfield.dart';
+import 'package:new_app/pages/post_view_screen.dart';
 
 class AddNewPostPage extends StatefulWidget {
   const AddNewPostPage({Key? key}) : super(key: key);
@@ -135,11 +136,21 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
                 hintText: 'Post Description',
                 obscureText: false),
             const SizedBox(
-              height: 20,
+              height: 100,
             ),
             _isLoading
                 ? const CircularProgressIndicator()
-                : MyButton(onTap: addPost, btnText: 'Submit')
+                : MyButton(onTap: addPost, btnText: 'Submit'),
+            ElevatedButton(
+              child: const Text('Go to Second Screen'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const PostViewScreen()),
+                );
+              },
+            ),
           ],
         ),
       ),

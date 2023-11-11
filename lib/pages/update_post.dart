@@ -8,12 +8,12 @@ import 'package:new_app/repository/post_repository.dart';
 
 class UpdatePostScreen extends StatefulWidget {
   final PostModel post;
-  final Function onUpdate;
+  // final Function onUpdate;
 
   const UpdatePostScreen({
     Key? key,
     required this.post,
-    required this.onUpdate,
+    // required this.onUpdate,
   }) : super(key: key);
 
   @override
@@ -60,6 +60,7 @@ class _UpdatePostScreenState extends State<UpdatePostScreen> {
       setState(() {
         _isLoading = false;
       });
+      // widget.onUpdate();
       Get.to(() => const PostViewScreen());
     }
   }

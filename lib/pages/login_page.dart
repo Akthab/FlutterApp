@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:new_app/components/my_button.dart';
 import 'package:new_app/components/my_textfield.dart';
 import 'package:new_app/pages/forgot_password_page.dart';
@@ -64,14 +65,9 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: SingleChildScrollView(
             child: Column(children: [
-              const SizedBox(
-                height: 50,
-              ),
-              const Icon(
-                Icons.lock,
-                size: 100,
-              ),
-              const SizedBox(height: 50),
+              Lottie.network(
+                  'https://lottie.host/c2fe2241-97d4-466c-ba28-535acb7b9d00/KS6H5YrXz5.json',
+                  width: 300),
               Text('Welcome back you\'ve been missed',
                   style: TextStyle(color: Colors.grey[700], fontSize: 16)),
               const SizedBox(height: 50),
@@ -115,43 +111,24 @@ class _LoginPageState extends State<LoginPage> {
                 height: 25.0,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                padding: const EdgeInsets.symmetric(horizontal: 28.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Expanded(
-                        child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey[400],
-                    )),
                     Text(
-                      'Or continue with',
+                      'Not a member?',
                       style: TextStyle(color: Colors.grey[700]),
                     ),
-                    Expanded(
-                        child: Divider(
-                      thickness: 0.5,
-                      color: Colors.grey[400],
-                    )),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Not a member?',
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        GestureDetector(
-                          onTap: widget.onTap,
-                          child: const Text(
-                            'Register now',
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    GestureDetector(
+                      onTap: widget.onTap,
+                      child: const Text(
+                        'Register now',
+                        style: TextStyle(
+                            color: Colors.blue, fontWeight: FontWeight.bold),
+                      ),
                     )
                   ],
                 ),

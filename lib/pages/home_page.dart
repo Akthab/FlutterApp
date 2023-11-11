@@ -1,6 +1,8 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -23,64 +25,32 @@ class HomePage extends StatelessWidget {
           children: [
             Expanded(
               child: Center(
-                child: Text(
-                  // 'Laptop',
-                  'Logged In as ${user.email!}',
-                  style: const TextStyle(fontSize: 20),
+                child: Column(
+                  children: [
+                    Lottie.network(
+                        'https://lottie.host/c57a644b-3774-4e4f-94a3-4531797569d6/Yn46iq3VlP.json'),
+                    AnimatedTextKit(
+                      animatedTexts: [
+                        TypewriterAnimatedText(
+                          'Welcome ${user.email!}',
+                          textStyle: const TextStyle(
+                            fontSize: 32.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          speed: const Duration(milliseconds: 600),
+                        ),
+                      ],
+                      totalRepeatCount: 4,
+                      pause: const Duration(milliseconds: 1000),
+                      displayFullTextOnTap: true,
+                      stopPauseOnTap: true,
+                    )
+                  ],
                 ),
               ),
             ),
           ],
         ),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   currentIndex: 0,
-        //   onTap: (index) {
-        //     switch (index) {
-        //       case 0:
-        //         Get.to(HomePage());
-        //         break;
-        //       case 1:
-        //         Get.to(() => const AddNewPostPage());
-        //         break;
-        //       case 2:
-        //         Get.to(() => const PostViewScreen());
-        //         break;
-        //       case 3:
-        //         Get.toNamed('/notifications');
-        //         break;
-        //     }
-        //   },
-        //   items: const [
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.home,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'Home',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.person,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'Profile',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.settings,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'Settings',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         Icons.notifications,
-        //         color: Colors.black,
-        //       ),
-        //       label: 'Notifications',
-        //     ),
-        //   ],
-        // ),
       ),
     );
   }
