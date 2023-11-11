@@ -141,16 +141,6 @@ class _AddNewPostPageState extends State<AddNewPostPage> {
             _isLoading
                 ? const CircularProgressIndicator()
                 : MyButton(onTap: addPost, btnText: 'Submit'),
-            ElevatedButton(
-              child: const Text('Go to Second Screen'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const PostViewScreen()),
-                );
-              },
-            ),
           ],
         ),
       ),
